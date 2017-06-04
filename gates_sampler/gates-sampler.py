@@ -34,12 +34,10 @@ def create_full_sample_temp_table(wave_id,group_id,conn_db):
     result = conn.execute(sql_execution)
     conn.close()
 
-
 def append_group_sample(wave_id,group_id,conn_db):
     conn = conn_db.cursor() #create cursor to execute the direct db commands
     temp_full_sample_table_name = "temp_wave_%d"%(wave_id)
     temp_table_name = "group_"+str(group_id)
-    time.sleep(1)
     sql_execution = """insert into %s select * from %s;"""%(temp_full_sample_table_name,temp_table_name)
     print(sql_execution)
     result = conn.execute(sql_execution)
@@ -144,6 +142,11 @@ def main():
         retVal = append_group_sample(wave,i,conn_db)
 
     sample = pd.read_sql("""select * from temp_wave_1""",conn_db)
+
+    #chec the individual samples against the
+    #1. Filter Criteria
+    #2. Uniqueness
+    #3. Previous samples in the DB
 
     #write the new samples to the main db.
 
