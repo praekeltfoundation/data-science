@@ -46,21 +46,22 @@ def append_group_sample(wave_id,group_id,conn_db):
     conn.close()
     return(result)
 
-def get_group_sample(group_id,conn_db,parent_table_name,population_filter,group_filter,group_value,samples):
-    conn = conn_db.cursor() #create cursor to execute the direct db commands
-    over psycopg2
+def get_group_sample(group_id,investigation_id, wave_id,conn_db,parent_table_name,population_filter,group_filter,group_value,samples):
+    #function to get the random samples from a given group
+    conn = conn_db.cursor() #create cursor to execute the direct db commands over psycopg2
     temp_table_name = "group_"+str(group_id)
     sql_execution = """DROP TABLE IF EXISTS %s;"""%(temp_table_name)
     result = conn.execute(sql_execution)
     sql_execution = """
     CREATE TABLE %s as (
-            select *,random() as random 
+            select *,random() as random,%s as investigation_id, %s as wave_id,
+            %s as group_id
             from %s 
             where %s 
             and %s in ('%s') 
             order by random asc 
             limit %d);
-    """%(temp_table_name,parent_table_name,population_filter,group_filter,group_value,samples)
+    """%(temp_table_name,investigation_id,wave_id,group_id,parent_table_name,population_filter,group_filter,group_value,samples)
     print(sql_execution)
     result = conn.execute(sql_execution)
     sql_execution_count = """
@@ -104,16 +105,8 @@ def main():
     pwd = 'postgres'
     #configuration script
     id_column = "MSISDN" # column that is used for the unique identifier
-    investigation = 1 # Investigation number tag
-    wave = 1 # Wave tag
-    filter = [""""EDD" between '2016-03-03' and '2016-03-10'""",
-            """"province" in ('ec Eastern Cape Province',
-            'kz KwaZulu-Natal Province',
-            'nw North West Province',
-            'nc Northern Cape Province',
-            'wc Western Cape Province')"""]
-    splitByColumn = "Language"
-    splitValues = ["afr_ZA","eng_ZA"]
+    investigation_id = 1 # Investigation number tag
+    wave_id = 1 # Wave tag
     ###############
     
     conn_db=psycopg2.connect(dbname=master_db_name,user=user,password=pwd,
@@ -130,13 +123,19 @@ def main():
                 """
     group_filter = "\"Language\""
     group_values = ['afr_ZA','eng_ZA','xho_ZA']
-    group_sample_number = [200,200,250]
+    group_sample_number = [1000,200,250]
     parent_table_name = "ecd_full_sample_data_set_deduped"
+    previous_samples_table_name = "gates_samples"
     
-    #for loop
+    #check for duplicates on the ID column
+
+    #create table with all the previous samples removed
+
+    #get new samples for the different groups and add to temp tables
     for i in range(0,len(group_values)):
-        (a,b,df) = get_group_sample(i,conn_db,parent_table_name,population_filter,group_filter,group_values[i],group_sample_number[i])
+        (a,b,df) = get_group_sample(i,investigation_id,wave_id,conn_db,parent_table_name,population_filter,group_filter,group_values[i],group_sample_number[i])
         print(i)
+
     #create the temp DB to hold all the samples together    
     retVal = create_full_sample_temp_table(wave,0,conn_db)
     
@@ -146,10 +145,8 @@ def main():
 
     sample = pd.read_sql("""select * from temp_wave_1""",conn_db)
 
+    #write the new samples to the main db.
+
 
     output_file("stocks.html", title="stocks.py example")
-    sample = engine.execute(text("""insert into temp_wave_1 select * from
-        group_0""").execution_options(autocommit=true))
-  count = engine.execute(
-                          text(sql_execution_count).execution_options(autocommit=True))
 
