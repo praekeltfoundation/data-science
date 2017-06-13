@@ -1,0 +1,23 @@
+{
+  "master_db_name": "postgres",
+  "database_port": "6432",
+  "database_server": "localhost",
+  "user": "postgres",
+  "pwd": "postgres",
+  "id_column": "id",
+  "investigation_id": "1",
+  "wave_id": "1",
+  "parent_table_name": "test_seed_data_source",
+  "filtered_table_name": "gates_investigation_1_filtered",
+  "all_samples_table_name": "all_gates_investigations_samples",
+  "filter": [
+    "Province in ('ec Eastern Cape Province','kz KwaZulu-Natal Province','wc Western Cape Province','nc Northern Cape Province')",
+    "facility_code not in ('Unavailable')",
+    "edd between '2015-12-01' and '2016-06-01'"
+    ],
+  "field_to_randomize" : "lang",
+  "samples_from_field" : {
+    "afr_ZA" : "3",
+    "eng_ZA" : "7",
+    "xho_ZA" : "10"}
+}              
