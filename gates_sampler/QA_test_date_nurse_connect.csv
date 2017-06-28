@@ -1,0 +1,12 @@
+Name,seed_uuid,seed_msisdn_registration,seed_facility_code,seed_language,seed_dob,seed_registration_date,seed_message_set,seed_message_sequence,ncmobi_active,dhis2_province
+Jacqui,6cda1942-5a74-11e7-907b-a6006ad3dba0,+27713519728,656442,eng_ZA,1984-09-20,2016-05-03,nurseconnect.hw_full.1,15,FALSE,wc Western Cape Province
+Matt,78708a98-5a74-11e7-907b-a6006ad3dba0,+27826739844,293442,eng_ZA,1996-06-07,2016-11-25,nurseconnect.hw_full.1,44,FALSE,gp Gauteng Province
+Cat,7dc1e2ee-5a74-11e7-907b-a6006ad3dba0,27747928763,333951,eng_ZA,1997-10-19,2016-12-17,nurseconnect.hw_full.1,9,FALSE,fs Free State Province
+Lauren,97aafc68-5a74-11e7-907b-a6006ad3dba0,+27767384103,207742,eng_ZA,1990-01-07,2016-12-24,nurseconnect.hw_full.1,9,FALSE,kz KwaZulu-Natal Province
+Charles,9cadd74e-5a74-11e7-907b-a6006ad3dba0,27844301160,874006,eng_ZA,1984-12-01,2016-04-13,nurseconnect.hw_full.1,5,FALSE,lp Limpopo Province
+Kate,aac9476e-5a74-11e7-907b-a6006ad3dba0,+27844715231,177751,eng_ZA,1991-10-09,2016-07-13,nurseconnect.hw_full.1,28,FALSE,wc Western Cape Province
+Mobi-site test- This number shouldn't get any messages as it should be filtered from the mobisite.,af2b25ca-5a74-11e7-907b-a6006ad3dba0,27844301161,177751,eng_ZA,1984-10-20,2016-08-01,nurseconnect.hw_full.1,11,TRUE,wc Western Cape Province
+Province filter test-  no province,8aaaf218-5a7c-11e7-907b-a6006ad3dba0,27844301162,1877512,eng_ZA,1997-04-02,2016-10-21,nurseconnect.hw_full.1,26,FALSE,
+Message set filter- not nurse connect msg set,5d593546-5be8-11e7-907b-a6006ad3dba0,27844301163,177751,eng_ZA,1994-10-25,2016-08-04,catchup.nurseconnect.disruption,33,FALSE,wc Western Cape Province
+Patricia,f8d730d6-5bde-11e7-907b-a6006ad3dba0,27848758702,207742,eng_ZA,1999-01-05,2016-08-03,nurseconnect.hw_full.1,35,FALSE,kz KwaZulu-Natal Province
+Peter,0309f11a-5bdf-11e7-907b-a6006ad3dba0,27733682129,656442,eng_ZA,1992-11-16,2016-11-09,nurseconnect.hw_full.1,49,FALSE,wc Western Cape Province

@@ -1,0 +1,23 @@
+{
+  "master_db_name": "charlescopley",
+  "database_port": "6432",
+  "database_server": "localhost",
+  "user": "charlescopley",
+  "pwd": "parham",
+  "id_column": "seed_uuid",
+  "msisdn_column": "seed_msisdn_registration",
+  "investigation_id": "1",
+  "wave_id": "1",
+  "sampler_trigger_start_date": "04-07-2017",
+  "sampler_type": "nurse",
+  "parent_table_name": "gates_qa_investigation_1_parent_table",
+  "filtered_table_name": "gates_qa_investigation_1_filtered",
+  "all_samples_table_name": "all_gates_qa_investigations_samples",
+  "filter": [
+    "ncmobi_active = 'false' and seed_message_set = 'nurseconnect.hw_full.1' and dhis2_province in ('wc Western Cape Province','gp Gauteng Province','fs Free State Province','kz KwaZulu-Natal Province','lp Limpopo Province')"
+    ],
+  "field_to_randomize" : "seed_language",
+  "samples_from_field" : {
+    "eng_ZA" : "2"
+	}
+}              
